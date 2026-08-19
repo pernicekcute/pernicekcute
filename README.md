@@ -17,7 +17,7 @@
 
 ## 🧑‍💻 About Me
 
-<img align="right" width="100" src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif"/>
+<img align="right" width="150" src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif"/>
 
 ### Hi! I'm **pernicekcute** 👋
 
@@ -56,7 +56,7 @@ I'm a developer who loves building things, experimenting with technology, and ma
 
 <p align="center">
 
-<img src="https://skillicons.dev/icons?i=androidstudiokotlin&perline=8"/>
+<img src="https://skillicons.dev/icons?i=androidstudio,kotlin&perline=8"/>
 
 </p>
 
