@@ -1,4 +1,7 @@
 # 👋 Hey, I'm pernicekcute!
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:007AFF,50:7F52FF,100:00C2FF&height=180&section=header&text=pernicekcute&fontSize=50&fontColor=ffffff&animation=fadeIn&fontAlignY=35"/>
+</p>
 
 <p align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Google+Sans&weight=700&size=30&duration=2800&pause=900&color=58A6FF&center=true&vCenter=true&width=800&lines=Welcome+to+my+GitHub!+%F0%9F%91%8B;I+build+cool+things+with+code+%F0%9F%92%BB;Android+%7C+Windows+%7C+SwiftUI+%7C+Web;Turning+ideas+into+actual+software+%E2%9C%A8" alt="Typing SVG"/>
@@ -8,10 +11,6 @@
   <img src="https://komarev.com/ghpvc/?username=pernicekcute&label=PROFILE%20VIEWS&color=0e75b6&style=for-the-badge" />
   <img src="https://img.shields.io/github/followers/pernicekcute?label=FOLLOWERS&style=for-the-badge&color=236ad3" />
   <img src="https://img.shields.io/github/stars/pernicekcute?label=STARS&style=for-the-badge&color=f5c542" />
-</p>
-
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:007AFF,50:7F52FF,100:00C2FF&height=180&section=header&text=pernicekcute&fontSize=50&fontColor=ffffff&animation=fadeIn&fontAlignY=35"/>
 </p>
 
 ---
