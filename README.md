@@ -57,7 +57,7 @@ I'm a developer who loves building things, experimenting with technology, and ma
 
 <p align="center">
 
-<img src="https://skillicons.dev/icons?i=androidstudio,android,kotlin&perline=8"/>
+<img src="https://skillicons.dev/icons?i=androidstudiokotlin&perline=8"/>
 
 </p>
 
