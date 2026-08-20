@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok Titlebar Page 🎵</title>
+  <style>
+    /* Základní nastavení stránky 🎨 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      padding-top: 80px; /* Odsazení, aby obsah nezasahoval pod lištu */
+    }
+
+    /* Fixní horní lišta (Titlebar) 📌 */
+    .titlebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background-color: #000000;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000; /* Zaručí, že lišta bude vždy nahoře */
+    }
+
+    /* Profilová část v liště 👤 */
+    .profile-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .profile-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #25f4ee; /* TikTok tyrkysový akcent ✨ */
+    }
+
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .display-name {
+      font-weight: bold;
+      font-size: 1.05rem;
+    }
+
+    .username {
+      font-size: 0.85rem;
+      color: #fe2c55; /* TikTok růžový akcent 🔥 */
+    }
+
+    /* Testovací obsah pro skrolování 📜 */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Horní lišta 📌 -->
+  <header class="titlebar">
+    <div class="profile-container">
+      <img id="tiktok-avatar" class="profile-avatar" src="" alt="TikTok PFP">
+      <div class="profile-info">
+        <span id="tiktok-display-name" class="display-name">Načítání...</span>
+        <span id="tiktok-username" class="username">@...</span>
+      </div>
+    </div>
+    <div style="font-size: 1.5rem;">🎵</div>
+  </header>
+
+  <!-- Hlavní obsah stránky 📄 -->
+  <main class="content">
+    <div class="card">
+      <h2>Vítej na stránce! 🎉</h2>
+      <p>Vyzkoušej skrolovat dolů a nahoru 📜. Horní lišta zůstane stále přišpendlená na svém místě! 📌✨</p>
+    </div>
+    
+    <!-- Prodloužený obsah pro test skrolování -->
+    <div class="card" style="height: 400px;">
+      <h3>Obsah blok 1 📦</h3>
+      <p>Skroluj dál... 👇</p>
+    </div>
+    <div class="card" style="height: 400px;">
+      <h3>Obsah blok 2 📦</h3>
+      <p>A ještě dál... 👇</p>
+    </div>
+  </main>
+
+  <script>
+    // ⚙️ NASTAVENÍ: Zadej své TikTok uživatelské a zobrazované jméno níže:
+    const tiktokUsername = 'rockyroad_doors'; // 👈 Zde napiš uživatelské jméno (bez @)
+    const tiktokDisplayName = 'Rocky Road '; // 👈 Zde napiš své zobrazované jméno
+
+    // Skript pro nastavení hodnot v liště 🛠️
+    document.addEventListener('DOMContentLoaded', () => {
+      const avatarEl = document.getElementById('tiktok-avatar');
+      const displayNameEl = document.getElementById('tiktok-display-name');
+      const usernameEl = document.getElementById('tiktok-username');
+
+      // Použití Unavatar služby pro načtení TikTok PFP 🖼️
+      avatarEl.src = `https://unavatar.io/tiktok/${tiktokUsername}`;
+      displayNameEl.textContent = tiktokDisplayName;
+      usernameEl.textContent = `@${tiktokUsername}`;
+    });
+  </script>
+</body>
+</html>
