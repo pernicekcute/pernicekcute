@@ -7,36 +7,33 @@
   <style>
     /* 🎨 CSS Proměnné pro Light Mode (Světlý režim) ☀️ */
     :root {
-      --bg-color: #f4f4f9;
+      --bg-color: #f2f2f7; /* Pravé iOS šedé pozadí 🍏 */
       --text-color: #000000;
       --card-bg: #ffffff;
-      --card-shadow: rgba(0, 0, 0, 0.05);
       
-      /* Liquid Glass BEZ BLURU - Světlý 🧊 */
-      --titlebar-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
-      --titlebar-text: #000000;
-      --titlebar-border: rgba(255, 255, 255, 0.5); 
-      --titlebar-shadow: rgba(0, 0, 0, 0.1);
-      /* Pouze saturace pro oživení barev, ŽÁDNÝ BLUR ❌🌫️ */
-      --glass-filter: saturate(180%); 
-      --glass-inset: inset 0 1px 1px rgba(255, 255, 255, 0.7); /* Silnější odlesk hrany ✨ */
+      /* 🍏 PRAVÉ iOS Liquid Glass - Světlý 🧊 */
+      --titlebar-bg: rgba(255, 255, 255, 0.45); /* Mírně bělejší, aby to sklo mělo hmotu */
+      --titlebar-border: rgba(0, 0, 0, 0.05); 
+      --titlebar-shadow: rgba(0, 0, 0, 0.08);
+      
+      /* Blur je zpět! Bez něj to není sklo. 25px je nativní iOS hodnota! ✨ */
+      --glass-filter: blur(25px) saturate(200%); 
+      --glass-inset: inset 0 1px 1px rgba(255, 255, 255, 0.8);
     }
 
     /* 🌙 Automatický Dark Mode podle systému 📱 */
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg-color: #121212;
+        --bg-color: #000000; /* Pravá černá */
         --text-color: #ffffff;
         --card-bg: #1c1c1e;
-        --card-shadow: rgba(0, 0, 0, 0.5);
         
-        /* Liquid Glass BEZ BLURU - Tmavý 🧊 */
-        --titlebar-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
-        --titlebar-text: #ffffff;
-        --titlebar-border: rgba(255, 255, 255, 0.15); 
+        /* 🍏 PRAVÉ iOS Liquid Glass - Tmavý 🧊 */
+        --titlebar-bg: rgba(30, 30, 30, 0.55); 
+        --titlebar-border: rgba(255, 255, 255, 0.1); 
         --titlebar-shadow: rgba(0, 0, 0, 0.4);
-        --glass-filter: saturate(180%); /* ŽÁDNÝ BLUR ❌🌫️ */
-        --glass-inset: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        --glass-filter: blur(25px) saturate(200%);
+        --glass-inset: inset 0 1px 1px rgba(255, 255, 255, 0.15);
       }
     }
 
@@ -64,21 +61,20 @@
       width: calc(100% - 8px);
       height: 64px;
       
-      background: var(--titlebar-bg); /* Skleněný přechod 💎 */
+      background: var(--titlebar-bg); 
       
-      /* Aplikace filtru (už žádný blur!) 🍏 */
+      /* ✨ Pravý nativní filter pro to pravé sklo! 💎 */
       backdrop-filter: var(--glass-filter);
-      -webkit-backdrop-filter: var(--glass-filter); 
+      -webkit-backdrop-filter: var(--glass-filter); /* Toto je nutné pro iPhone! 📱 */
       
-      color: var(--titlebar-text); 
+      color: var(--text-color); 
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 16px;
       border-radius: 50px;
       
-      /* Stín a horní odlesk 🪞 */
-      box-shadow: 0 8px 32px var(--titlebar-shadow), var(--glass-inset);
+      box-shadow: 0 8px 24px var(--titlebar-shadow), var(--glass-inset);
       border: 1px solid var(--titlebar-border); 
       z-index: 1000;
       transition: all 0.3s ease;
@@ -96,7 +92,7 @@
       height: 42px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.4); 
+      border: 2px solid rgba(150, 150, 150, 0.3); 
     }
 
     .profile-info {
@@ -122,7 +118,7 @@
       padding: 25px;
       border-radius: 20px; 
       margin-bottom: 20px;
-      box-shadow: 0 4px 12px var(--card-shadow);
+      box-shadow: 0 2px 10px var(--titlebar-shadow);
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -153,17 +149,17 @@
   <!-- Hlavní obsah stránky 📄 -->
   <main class="content">
     <div class="card">
-      <h2>Vítej na stránce! 🎉</h2>
-      <p>Vyzkoušej skrolovat dolů a nahoru 📜. Blur je PRYČ! ❌🌫️ Zůstal jen čistý krystalický Liquid Glass s nádherným odleskem hran. 💎✨</p>
+      <h2>Zkus to teď! 🎉</h2>
+      <p>Vrátil jsem tam pravý iOS Blur (25px). Bez něj je to totiž jen průhledná fólie! Teď už by texty pod lištou neměly dělat tu nečitelnou paseku. 💎✨</p>
     </div>
     
     <div class="card gradient-card-1" style="height: 400px;">
       <h3>Barevný blok 1 🎨📦</h3>
-      <p>Když přes tohle přeskroluješ, uvidíš čistou saturovanou barvu bez jakéhokoliv rozmazání! 👇</p>
+      <p>Skroluj dolů a kochej se! 👇</p>
     </div>
     <div class="card gradient-card-2" style="height: 400px;">
       <h3>Barevný blok 2 🌊📦</h3>
-      <p>Nativní vzhled zaručen! 💎✨</p>
+      <p>Pravé sklo! 💎✨</p>
     </div>
   </main>
 
