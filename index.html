@@ -22,22 +22,26 @@
     /* Fixní plovoucí pill lišta (Pill Titlebar) 💊📌 */
     .titlebar {
       position: fixed;
-      top: 4px; /* Odsazení shora 4px 🔝 */
-      left: 4px; /* Odsazení zleva 4px ⬅️ */
-      right: 4px; /* Odsazení zprava 4px ➡️ */
-      width: calc(100% - 8px); /* Přesná šířka s odsazením 📐 */
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      width: calc(100% - 8px);
       height: 64px;
-      background-color: rgba(0, 0, 0, 0.85); /* Mírná průhlednost ✨ */
-      backdrop-filter: blur(12px); /* Blur efekt pozadí 🌫️ */
-      -webkit-backdrop-filter: blur(12px);
-      color: #ffffff;
+      
+      /* 🌟 ZDE JE ZMĚNA: Pozadí na 20 % (0.2) pro maximální blur efekt! 🧊 */
+      background-color: rgba(0, 0, 0, 0.3); 
+      backdrop-filter: blur(15px); /* Trochu silnější blur, ať to na těch 20 % vynikne 🌫️ */
+      -webkit-backdrop-filter: blur(15px);
+      
+      /* Změna barvy textu na tmavou pro lepší čitelnost na světlém pozadí 🖋️ */
+      color: #333333; 
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 16px;
-      border-radius: 50px; /* Pill design (plně zaoblené rohy) 💊 */
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Plovoucí stín 🌌 */
-      border: 1px solid rgba(255, 255, 255, 0.15); /* Jemný okraj 🖼️ */
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Jemnější stín pro čistší vzhled 🌌 */
+      border: 1px solid rgba(0, 0, 0, 0.1); /* Tmavší, ale velmi jemný okraj 🖼️ */
       z-index: 1000;
     }
 
@@ -99,16 +103,16 @@
   <main class="content">
     <div class="card">
       <h2>Vítej na stránce! 🎉</h2>
-      <p>Vyzkoušej skrolovat dolů a nahoru 📜. Pill lišta nahoře plave 4px od okrajů! 💊✨</p>
+      <p>Vyzkoušej skrolovat dolů a nahoru 📜. Pill lišta nahoře plave 4px od okrajů a díky 20% pozadí je krásně vidět ten skleněný blur! 💊🧊✨</p>
     </div>
     
     <!-- Prodloužený obsah pro test skrolování -->
-    <div class="card" style="height: 400px;">
-      <h3>Obsah blok 1 📦</h3>
-      <p>Skroluj dál... 👇</p>
+    <div class="card" style="height: 400px; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);">
+      <h3>Barevný blok 1 🎨📦</h3>
+      <p>Tady skvěle uvidíš ten průhledný efekt, když přes to přeskroluješ! 👇</p>
     </div>
-    <div class="card" style="height: 400px;">
-      <h3>Obsah blok 2 📦</h3>
+    <div class="card" style="height: 400px; background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);">
+      <h3>Barevný blok 2 🌊📦</h3>
       <p>A ještě dál... 👇</p>
     </div>
   </main>
