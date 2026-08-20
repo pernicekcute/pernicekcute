@@ -5,6 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TikTok Titlebar Page 🎵</title>
   <style>
+    /* 🎨 CSS Proměnné pro Light Mode (Výchozí) ☀️ */
+    :root {
+      --bg-color: #f4f4f9;
+      --text-color: #333333;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.05);
+      
+      /* Titlebar proměnné */
+      --titlebar-bg: rgba(0, 0, 0, 0.2); /* 20% černá pro světlý režim */
+      --titlebar-text: #333333;
+      --titlebar-border: rgba(0, 0, 0, 0.1);
+      --titlebar-shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    /* 🌙 Automatický Dark Mode podle systému 📱 */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #121212;
+        --text-color: #ffffff;
+        --card-bg: #1e1e1e;
+        --card-shadow: rgba(0, 0, 0, 0.5);
+        
+        /* Titlebar proměnné pro tmavý režim */
+        --titlebar-bg: rgba(255, 255, 255, 0.15); /* Jemně bílá s 15% průhledností pro krásný blur na černém 🧊 */
+        --titlebar-text: #ffffff;
+        --titlebar-border: rgba(255, 255, 255, 0.1);
+        --titlebar-shadow: rgba(0, 0, 0, 0.4);
+      }
+    }
+
     /* Základní nastavení stránky 🎨 */
     * {
       box-sizing: border-box;
@@ -14,9 +44,10 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f4f9;
-      color: #333;
-      padding-top: 90px; /* Upravené odsazení pro plovoucí pill 📏 */
+      background-color: var(--bg-color); /* Dynamická barva pozadí 🌈 */
+      color: var(--text-color); /* Dynamická barva textu ✍️ */
+      padding-top: 90px;
+      transition: background-color 0.3s ease, color 0.3s ease; /* Plynulý přechod při změně režimu ⏳ */
     }
 
     /* Fixní plovoucí pill lišta (Pill Titlebar) 💊📌 */
@@ -28,21 +59,20 @@
       width: calc(100% - 8px);
       height: 64px;
       
-      /* 🌟 ZDE JE ZMĚNA: Pozadí na 20 % (0.2) pro maximální blur efekt! 🧊 */
-      background-color: rgba(0, 0, 0, 0.3); 
-      backdrop-filter: blur(15px); /* Trochu silnější blur, ať to na těch 20 % vynikne 🌫️ */
+      background-color: var(--titlebar-bg); /* Dynamické 20% pozadí 🧊 */
+      backdrop-filter: blur(15px); /* Liquid glass efekt 🌫️ */
       -webkit-backdrop-filter: blur(15px);
       
-      /* Změna barvy textu na tmavou pro lepší čitelnost na světlém pozadí 🖋️ */
-      color: #333333; 
+      color: var(--titlebar-text); 
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 16px;
       border-radius: 50px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Jemnější stín pro čistší vzhled 🌌 */
-      border: 1px solid rgba(0, 0, 0, 0.1); /* Tmavší, ale velmi jemný okraj 🖼️ */
+      box-shadow: 0 4px 15px var(--titlebar-shadow); 
+      border: 1px solid var(--titlebar-border); 
       z-index: 1000;
+      transition: all 0.3s ease; /* Plynulá změna barev titlebaru 🎨 */
     }
 
     /* Profilová část v liště 👤 */
@@ -78,11 +108,23 @@
     }
 
     .card {
-      background: white;
+      background: var(--card-bg); /* Dynamická barva karty 📦 */
       padding: 25px;
       border-radius: 16px;
       margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 8px var(--card-shadow);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Upravené gradienty aby vypadaly dobře i v Dark Mode 🌈 */
+    .gradient-card-1 {
+      background: linear-gradient(135deg, rgba(255, 154, 158, 0.8) 0%, rgba(254, 207, 239, 0.8) 100%);
+      color: #111;
+    }
+    
+    .gradient-card-2 {
+      background: linear-gradient(120deg, rgba(161, 196, 253, 0.8) 0%, rgba(194, 233, 251, 0.8) 100%);
+      color: #111;
     }
   </style>
 </head>
@@ -103,17 +145,17 @@
   <main class="content">
     <div class="card">
       <h2>Vítej na stránce! 🎉</h2>
-      <p>Vyzkoušej skrolovat dolů a nahoru 📜. Pill lišta nahoře plave 4px od okrajů a díky 20% pozadí je krásně vidět ten skleněný blur! 💊🧊✨</p>
+      <p>Vyzkoušej skrolovat dolů a nahoru 📜. Tato stránka se teď automaticky přizpůsobí tvému systému (Světlý/Tmavý režim)! ☀️🌙</p>
     </div>
     
     <!-- Prodloužený obsah pro test skrolování -->
-    <div class="card" style="height: 400px; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);">
+    <div class="card gradient-card-1" style="height: 400px;">
       <h3>Barevný blok 1 🎨📦</h3>
       <p>Tady skvěle uvidíš ten průhledný efekt, když přes to přeskroluješ! 👇</p>
     </div>
-    <div class="card" style="height: 400px; background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);">
+    <div class="card gradient-card-2" style="height: 400px;">
       <h3>Barevný blok 2 🌊📦</h3>
-      <p>A ještě dál... 👇</p>
+      <p>Skleněný blur (Liquid Glass) teď funguje úžasně v obou režimech! 🧊✨</p>
     </div>
   </main>
 
