@@ -4,23 +4,6 @@ I'm a frontend developer and designer focused on building clean web tools, thoug
 
 ---
 
-### Tech & Tools
-
-* **Languages:** JavaScript, TypeScript, HTML5, CSS3
-* **Frameworks & Libraries:** React, Next.js, Tailwind CSS
-* **Design & Workflow:** Figma, Git, UI/UX Prototyping
-* **Currently Learning:** 3D web graphics with Three.js and WebGL
-
----
-
-### What I'm Working On
-
-* Building a lightweight, distraction-free productivity app.
-* Experimenting with micro-interactions and CSS animations.
-* Collaborating on open-source web design resources.
-
----
-
 ### GitHub Stats
 
 ![Stats](https://github-readme-stats.vercel.app/api?username=pernicekcute&show_icons=true&theme=rose_pine&hide_border=true)
