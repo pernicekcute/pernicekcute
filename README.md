@@ -1,18 +1,80 @@
-# Hi, I'm Perníček
+Hi, I’m Perníček 👋
 
-I'm a frontend developer and designer focused on building clean web tools, thoughtful interfaces, and interactive applications. I care deeply about fine details, readable code, and solid user experiences.
+Developer · Designer · Builder
 
----
+I like building things that feel simple, polished, and intentional.
 
-### GitHub Stats
+I work across Android, Windows, iOS, web, and game development, usually mixing software engineering with UI/UX experimentation.
 
-![Stats](https://github-readme-stats.vercel.app/api?username=pernicekcute&show_icons=true&theme=rose_pine&hide_border=true)
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=pernicekcute&layout=compact&theme=rose_pine&hide_border=true)
+⸻
 
----
+✦ What I do
 
-### Links
+📱 Mobile
 
-* Portfolio: [your-portfolio.com](https://your-portfolio.com)
-* Twitter/X: [@yourhandle](https://twitter.com)
-* Ko-fi: [ko-fi.com/yourhandle](https://ko-fi.com)
+* Android apps & UI experiments
+* SwiftUI / UIKit
+* Material 3 & expressive interfaces
+* System-style UI and animations
+
+🖥️ Desktop
+
+* C# / .NET
+* WinUI 3
+* Windows UI experiments
+* Custom desktop applications
+
+🌐 Web
+
+* HTML, CSS & JavaScript
+* Interactive websites
+* Apple-inspired interfaces
+
+🎮 Games
+
+* Minecraft Bedrock add-ons
+* Geometry Dash / Geode
+* Roblox experiments
+
+⸻
+
+🛠️ Technologies
+
+Swift SwiftUI Kotlin Java C# .NET WinUI 3 HTML CSS JavaScript Git GitHub
+
+⸻
+
+ Design philosophy
+
+Simple should not mean boring.
+
+I care about interfaces that feel:
+
+* Fluid — motion should feel natural and interruptible.
+* Clear — the interface should explain itself.
+* Consistent — things should behave the way users expect.
+* Responsive — interactions should feel immediate.
+* Human — technology should stay out of the way.
+
+⸻
+
+🚧 Currently building
+
+🔨 Android projects
+Experimenting with modern Android UI, Material 3 Expressive, animations and system-level experiences.
+
+🔨 iOS projects
+Building SwiftUI/UIKit experiments with native system styling and modern iOS interactions.
+
+🔨 Coding With Pernicek
+My personal coding space for projects, experiments and things that probably started with “what if I tried this?”
+
+⸻
+
+📊 GitHub
+
+⸻
+
+Made with curiosity, caffeine, and an unreasonable amount of UI tweaking. ☕️
+
+© Perníček
