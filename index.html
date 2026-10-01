@@ -1,178 +1,463 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TikTok Titlebar Page 🎵</title>
-  <style>
-    /* 🎨 CSS Proměnné pro Light Mode (Světlý režim) ☀️ */
-    :root {
-      --bg-color: #f2f2f7; /* Pravé iOS šedé pozadí 🍏 */
-      --text-color: #000000;
-      --card-bg: #ffffff;
-      
-      /* 🍏 PRAVÉ iOS Liquid Glass - Světlý 🧊 */
-      --titlebar-bg: rgba(255, 255, 255, 0.45); /* Mírně bělejší, aby to sklo mělo hmotu */
-      --titlebar-border: rgba(0, 0, 0, 0.05); 
-      --titlebar-shadow: rgba(0, 0, 0, 0.08);
-      
-      /* Blur je zpět! Bez něj to není sklo. 25px je nativní iOS hodnota! ✨ */
-      --glass-filter: blur(25px) saturate(200%); 
-      --glass-inset: inset 0 1px 1px rgba(255, 255, 255, 0.8);
-    }
-
-    /* 🌙 Automatický Dark Mode podle systému 📱 */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg-color: #000000; /* Pravá černá */
-        --text-color: #ffffff;
-        --card-bg: #1c1c1e;
-        
-        /* 🍏 PRAVÉ iOS Liquid Glass - Tmavý 🧊 */
-        --titlebar-bg: rgba(30, 30, 30, 0.55); 
-        --titlebar-border: rgba(255, 255, 255, 0.1); 
-        --titlebar-shadow: rgba(0, 0, 0, 0.4);
-        --glass-filter: blur(25px) saturate(200%);
-        --glass-inset: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  <title>Native Browser Dialogs & APIs Showcase</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
       }
     }
+  </script>
 
-    /* Základní nastavení stránky 🎨 */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+  <style>
+    /* Native HTML5 <dialog> backdrop styling */
+    dialog::backdrop {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-color); 
-      color: var(--text-color);
-      padding-top: 90px;
-      transition: background-color 0.3s ease, color 0.3s ease; 
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
     }
-
-    /* Fixní plovoucí pill lišta 💊📌 */
-    .titlebar {
-      position: fixed;
-      top: 4px;
-      left: 4px;
-      right: 4px;
-      width: calc(100% - 8px);
-      height: 64px;
-      
-      background: var(--titlebar-bg); 
-      
-      /* ✨ Pravý nativní filter pro to pravé sklo! 💎 */
-      backdrop-filter: var(--glass-filter);
-      -webkit-backdrop-filter: var(--glass-filter); /* Toto je nutné pro iPhone! 📱 */
-      
-      color: var(--text-color); 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 16px;
-      border-radius: 50px;
-      
-      box-shadow: 0 8px 24px var(--titlebar-shadow), var(--glass-inset);
-      border: 1px solid var(--titlebar-border); 
-      z-index: 1000;
-      transition: all 0.3s ease;
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
     }
-
-    /* Profilová část v liště 👤 */
-    .profile-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 3px;
     }
-
-    .profile-avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid rgba(150, 150, 150, 0.3); 
-    }
-
-    .profile-info {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .display-name {
-      font-weight: 600; 
-      font-size: 1rem;
-      letter-spacing: -0.3px; 
-    }
-
-    /* Testovací obsah pro skrolování 📜 */
-    .content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    .card {
-      background: var(--card-bg);
-      padding: 25px;
-      border-radius: 20px; 
-      margin-bottom: 20px;
-      box-shadow: 0 2px 10px var(--titlebar-shadow);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .gradient-card-1 {
-      background: linear-gradient(135deg, rgba(255, 154, 158, 0.9) 0%, rgba(254, 207, 239, 0.9) 100%);
-      color: #000;
-    }
-    
-    .gradient-card-2 {
-      background: linear-gradient(120deg, rgba(161, 196, 253, 0.9) 0%, rgba(194, 233, 251, 0.9) 100%);
-      color: #000;
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
     }
   </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased">
 
-  <!-- Horní plovoucí pill lišta 💊📌 -->
-  <header class="titlebar">
-    <div class="profile-container">
-      <img id="tiktok-avatar" class="profile-avatar" src="" alt="TikTok PFP">
-      <div class="profile-info">
-        <span id="tiktok-display-name" class="display-name">Načítání...</span>
+  <!-- Header -->
+  <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="p-2 bg-indigo-500/10 text-indigo-400 rounded-xl border border-indigo-500/20">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="font-bold text-base sm:text-lg text-white">Native Browser Dialogs & APIs</h1>
+          <p class="text-xs text-slate-400">Standard window dialogs, HTML5 &lt;dialog&gt;, and beforeunload API</p>
+        </div>
+      </div>
+
+      <!-- Protection Status Indicator -->
+      <div class="flex items-center gap-2 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 text-xs">
+        <span class="text-slate-400 hidden sm:inline">Exit Protection:</span>
+        <span id="headerStatusBadge" class="inline-flex items-center gap-1.5 font-semibold text-emerald-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          ENABLED
+        </span>
       </div>
     </div>
-    <div style="font-size: 1.3rem; margin-right: 8px;">🎵</div>
   </header>
 
-  <!-- Hlavní obsah stránky 📄 -->
-  <main class="content">
-    <div class="card">
-      <h2>Zkus to teď! 🎉</h2>
-      <p>Vrátil jsem tam pravý iOS Blur (25px). Bez něj je to totiž jen průhledná fólie! Teď už by texty pod lištou neměly dělat tu nečitelnou paseku. 💎✨</p>
+  <!-- Main Content Layout -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full space-y-8">
+
+    <!-- Section 1: Native Exit Confirmation (beforeunload) -->
+    <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div>
+          <h2 class="text-base font-bold text-white flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+            1. Native Exit Confirmation (<code class="text-indigo-300 text-xs font-mono">window.beforeunload</code>)
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Triggers the browser's built-in <em>"Leave site? Changes you made may not be saved"</em> dialog on close, refresh, or navigation.
+          </p>
+        </div>
+
+        <!-- Toggle Switch -->
+        <div class="flex items-center gap-3 bg-slate-950 px-3.5 py-2 rounded-xl border border-slate-800">
+          <label for="exitProtectionToggle" class="text-xs font-medium text-slate-300 cursor-pointer select-none">
+            Exit Guard
+          </label>
+          <button id="exitProtectionToggle" role="switch" aria-checked="true" onclick="toggleExitProtection()" class="w-10 h-5 bg-indigo-600 rounded-full p-0.5 transition-colors relative focus:outline-none">
+            <div id="toggleKnob" class="w-4 h-4 bg-white rounded-full transition-transform translate-x-5"></div>
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Interactive Input Area -->
+        <div class="lg:col-span-7 space-y-3">
+          <div class="flex items-center justify-between">
+            <label for="editorTextarea" class="text-xs font-medium text-slate-300">
+              Document Editor <span class="text-slate-500">(Type below to trigger unsaved state)</span>
+            </label>
+            <span id="unsavedStateBadge" class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">
+              STATE: SAVED
+            </span>
+          </div>
+
+          <textarea id="editorTextarea" rows="4" oninput="handleUserInputChange()" class="w-full bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-xl p-3.5 text-xs text-slate-200 outline-none transition font-sans resize-none" placeholder="Start typing here to mark changes as unsaved..."></textarea>
+
+          <div class="flex items-center justify-between pt-1">
+            <div class="flex items-center gap-2">
+              <button onclick="saveDocument()" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold transition">
+                Save Edits
+              </button>
+              <button onclick="resetDocument()" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-medium transition">
+                Reset Form
+              </button>
+            </div>
+            <span id="saveStatusMessage" class="text-xs text-slate-500 italic">No pending changes</span>
+          </div>
+        </div>
+
+        <!-- Action Tests -->
+        <div class="lg:col-span-5 bg-slate-950 border border-slate-800 rounded-xl p-4 flex flex-col justify-between space-y-4">
+          <div>
+            <h3 class="text-xs font-bold text-slate-200 mb-1">Test Exit Protection Triggers</h3>
+            <p class="text-[11px] text-slate-400 mb-3">
+              When edits are unsaved and guard is enabled, these actions trigger the browser's native confirm popup.
+            </p>
+
+            <div class="space-y-2">
+              <button onclick="testReload()" class="w-full px-3 py-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 rounded-lg text-xs font-medium flex items-center justify-between transition">
+                <span>Trigger Page Reload</span>
+                <code class="text-[10px] font-mono bg-amber-500/20 px-1.5 py-0.5 rounded">location.reload()</code>
+              </button>
+
+              <a href="https://example.com" target="_blank" onclick="logExternalLink(event)" class="w-full px-3 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 rounded-lg text-xs font-medium flex items-center justify-between transition">
+                <span>Navigate to External Link</span>
+                <code class="text-[10px] font-mono text-slate-400">example.com</code>
+              </a>
+            </div>
+          </div>
+
+          <div class="text-[10px] text-slate-500 border-t border-slate-800/80 pt-2 leading-relaxed">
+            Note: Modern browsers dictate standard unmodifiable text inside <code class="font-mono text-slate-400">beforeunload</code> prompts for user security.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STREAMING_CHUNK:Building Window Dialogs and HTML5 <dialog> grid... -->
+    <!-- Section 2: Native Blocking Dialogs & HTML5 Dialog -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Card 2A: Classic Window Dialogs -->
+      <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4 flex flex-col justify-between">
+        <div>
+          <h2 class="text-base font-bold text-white flex items-center gap-2 mb-1">
+            <span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
+            2. Classic Window Dialogs
+          </h2>
+          <p class="text-xs text-slate-400 mb-4">
+            Standard synchronous blocking browser dialogs (<code class="text-purple-300 font-mono">window.*</code> API).
+          </p>
+
+          <div class="space-y-3">
+            <!-- Alert Button -->
+            <button onclick="triggerWindowAlert()" class="w-full px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 transition flex items-center justify-between">
+              <span>Native <code class="text-purple-300 font-mono">window.alert()</code></span>
+              <span class="text-[10px] text-slate-400 font-mono">Modal Notice</span>
+            </button>
+
+            <!-- Confirm Button -->
+            <button onclick="triggerWindowConfirm()" class="w-full px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 transition flex items-center justify-between">
+              <span>Native <code class="text-purple-300 font-mono">window.confirm()</code></span>
+              <span class="text-[10px] text-slate-400 font-mono">Returns Boolean</span>
+            </button>
+
+            <!-- Prompt Button -->
+            <button onclick="triggerWindowPrompt()" class="w-full px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold border border-slate-700 transition flex items-center justify-between">
+              <span>Native <code class="text-purple-300 font-mono">window.prompt()</code></span>
+              <span class="text-[10px] text-slate-400 font-mono">Returns String / null</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-[11px] text-slate-400 leading-relaxed">
+          <strong class="text-slate-300 block mb-0.5">Note on Sandboxed Preview IFrames:</strong>
+          Some browser sandboxes disable <code class="text-purple-300 font-mono">alert/confirm/prompt</code>. Our functions include error catching to ensure page responsiveness.
+        </div>
+      </section>
+
+      <!-- Card 2B: Native HTML5 <dialog> Element -->
+      <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4 flex flex-col justify-between">
+        <div>
+          <h2 class="text-base font-bold text-white flex items-center gap-2 mb-1">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            3. Native HTML5 <code class="text-emerald-300 font-mono text-xs">&lt;dialog&gt;</code> Element
+          </h2>
+          <p class="text-xs text-slate-400 mb-4">
+            Modern standard web component modal using <code class="text-emerald-300 font-mono">.showModal()</code>, focus trapping, and <code class="text-emerald-300 font-mono">::backdrop</code>.
+          </p>
+
+          <div class="space-y-3">
+            <button onclick="openHTML5Dialog()" class="w-full py-3 bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-300 rounded-xl text-xs font-semibold transition flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+              Open Native &lt;dialog&gt; Modal
+            </button>
+          </div>
+        </div>
+
+        <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-[11px] text-slate-400 leading-relaxed space-y-1">
+          <div class="font-medium text-slate-300">HTML5 Dialog Features:</div>
+          <ul class="list-disc list-inside space-y-0.5 text-[10.5px]">
+            <li>Native top-layer rendering without <code class="font-mono text-slate-400">z-index</code> hacks</li>
+            <li>Built-in <kbd class="px-1 py-0.5 bg-slate-800 rounded font-mono text-[9px]">ESC</kbd> key dismissal handling</li>
+            <li>Supports <code class="font-mono text-slate-400">&lt;form method="dialog"&gt;</code> auto-close</li>
+          </ul>
+        </div>
+      </section>
+
     </div>
-    
-    <div class="card gradient-card-1" style="height: 400px;">
-      <h3>Barevný blok 1 🎨📦</h3>
-      <p>Skroluj dolů a kochej se! 👇</p>
-    </div>
-    <div class="card gradient-card-2" style="height: 400px;">
-      <h3>Barevný blok 2 🌊📦</h3>
-      <p>Pravé sklo! 💎✨</p>
-    </div>
+
+    <!-- Section 3: Live Event Console Log -->
+    <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+          <h2 class="font-bold text-white text-sm">Live Response & Action Log</h2>
+        </div>
+        <button onclick="clearConsoleLog()" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-medium border border-slate-700 transition">
+          Clear Console
+        </button>
+      </div>
+
+      <!-- Console Output Container -->
+      <div id="consoleTerminal" class="bg-slate-950 border border-slate-800 rounded-xl p-4 font-mono text-xs max-h-52 overflow-y-auto space-y-2">
+        <div class="text-slate-500 italic">[System] Terminal initialized. User responses from confirm, prompt, and dialogs will render here...</div>
+      </div>
+    </section>
+
   </main>
 
+  <!-- STREAMING_CHUNK:Inserting native HTML5 <dialog> element markup... -->
+  <!-- NATIVE HTML5 <dialog> ELEMENT -->
+  <dialog id="nativeModalElement" class="bg-slate-900 border border-slate-700 text-slate-100 p-6 rounded-2xl max-w-md w-full shadow-2xl backdrop:bg-slate-950/80">
+    <form method="dialog" class="space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="font-bold text-base text-white flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          Native &lt;dialog&gt; Component
+        </h3>
+        <button type="submit" value="close_x" class="text-slate-400 hover:text-white p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-300 leading-relaxed">
+        This modal is rendered directly by the browser engine using the HTML5 <code class="text-emerald-400 font-mono">&lt;dialog&gt;</code> element!
+      </p>
+
+      <div>
+        <label for="dialogInput" class="block text-xs font-medium text-slate-400 mb-1">Pass return value via submit button:</label>
+        <input type="text" id="dialogInput" value="Sample Payload" class="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-xl px-3 py-2 text-xs text-slate-200 outline-none">
+      </div>
+
+      <div class="pt-3 border-t border-slate-800 flex items-center justify-end gap-2">
+        <button type="submit" value="cancelled" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-medium transition">
+          Cancel
+        </button>
+        <button type="submit" id="dialogSubmitBtn" value="submitted" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-semibold transition">
+          Submit & Close
+        </button>
+      </div>
+    </form>
+  </dialog>
+
   <script>
-    const tiktokUsername = 'rockyroad_doors';
-    const tiktokDisplayName = 'Rocky Road ';
+    // State management
+    let exitProtectionEnabled = true;
+    let hasUnsavedChanges = false;
+    let logCounter = 0;
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const avatarEl = document.getElementById('tiktok-avatar');
-      const displayNameEl = document.getElementById('tiktok-display-name');
+    // 1. Native beforeunload Exit Confirmation API
+    window.addEventListener('beforeunload', (event) => {
+      if (exitProtectionEnabled && hasUnsavedChanges) {
+        // Standard spec requirement to show browser exit confirmation dialog
+        event.preventDefault();
+        // Legacy Chrome requirement
+        event.returnValue = '';
+        logEvent('BEFOREUNLOAD', 'Native page exit popup triggered by browser navigation attempt.');
+      }
+    });
 
-      avatarEl.src = `https://unavatar.io/tiktok/${tiktokUsername}`;
-      displayNameEl.textContent = tiktokDisplayName;
+    // Logging helper
+    function logEvent(source, message) {
+      logCounter++;
+      const terminal = document.getElementById('consoleTerminal');
+      const time = new Date().toLocaleTimeString();
+
+      let badgeClass = 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20';
+      if (source.includes('confirm')) badgeClass = 'text-purple-400 bg-purple-500/10 border-purple-500/20';
+      if (source.includes('prompt')) badgeClass = 'text-amber-400 bg-amber-500/10 border-amber-500/20';
+      if (source.includes('dialog')) badgeClass = 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
+      if (source.includes('ERROR')) badgeClass = 'text-rose-400 bg-rose-500/10 border-rose-500/20';
+
+      const entry = document.createElement('div');
+      entry.className = 'flex items-start gap-2 py-1 border-b border-slate-800/60 last:border-0';
+      entry.innerHTML = `
+        <span class="text-slate-500 text-[10px] shrink-0 font-mono">${time}</span>
+        <span class="px-1.5 py-0.5 rounded border text-[10px] font-mono font-bold shrink-0 ${badgeClass}">${source}</span>
+        <span class="text-slate-300 text-[11px] font-mono break-all">${escapeHtml(message)}</span>
+      `;
+
+      terminal.appendChild(entry);
+      terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace/>/g, "&gt;");
+    }
+
+    function clearConsoleLog() {
+      document.getElementById('consoleTerminal').innerHTML = '<div class="text-slate-500 italic">[System] Log cleared...</div>';
+      logCounter = 0;
+    }
+
+    // Toggle Exit Protection
+    function toggleExitProtection() {
+      exitProtectionEnabled = !exitProtectionEnabled;
+      const btn = document.getElementById('exitProtectionToggle');
+      const knob = document.getElementById('toggleKnob');
+      const badge = document.getElementById('headerStatusBadge');
+
+      if (exitProtectionEnabled) {
+        btn.classList.replace('bg-slate-700', 'bg-indigo-600');
+        knob.classList.replace('translate-x-0', 'translate-x-5');
+        btn.setAttribute('aria-checked', 'true');
+        badge.className = 'inline-flex items-center gap-1.5 font-semibold text-emerald-400';
+        badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>ENABLED';
+        logEvent('GUARD_STATE', 'Exit protection manually ENABLED');
+      } else {
+        btn.classList.replace('bg-indigo-600', 'bg-slate-700');
+        knob.classList.replace('translate-x-5', 'translate-x-0');
+        btn.setAttribute('aria-checked', 'false');
+        badge.className = 'inline-flex items-center gap-1.5 font-semibold text-slate-400';
+        badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-slate-500"></span>DISABLED';
+        logEvent('GUARD_STATE', 'Exit protection manually DISABLED');
+      }
+    }
+
+    // Handle user input in textarea
+    function handleUserInputChange() {
+      if (!hasUnsavedChanges) {
+        hasUnsavedChanges = true;
+        updateUIState();
+        logEvent('EDIT_STATE', 'Unsaved changes flag set to TRUE');
+      }
+    }
+
+    function saveDocument() {
+      hasUnsavedChanges = false;
+      updateUIState();
+      logEvent('SAVE', 'Edits saved successfully. Unsaved flag reset to FALSE.');
+    }
+
+    function resetDocument() {
+      document.getElementById('editorTextarea').value = '';
+      hasUnsavedChanges = false;
+      updateUIState();
+      logEvent('RESET', 'Form cleared. Unsaved flag reset to FALSE.');
+    }
+
+    function updateUIState() {
+      const stateBadge = document.getElementById('unsavedStateBadge');
+      const statusText = document.getElementById('saveStatusMessage');
+
+      if (hasUnsavedChanges) {
+        stateBadge.className = 'text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20';
+        stateBadge.innerText = 'STATE: UNSAVED EDITS';
+        statusText.innerText = '⚠ Pending edits unsaved';
+        statusText.className = 'text-xs text-amber-400 font-medium';
+      } else {
+        stateBadge.className = 'text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700';
+        stateBadge.innerText = 'STATE: SAVED';
+        statusText.innerText = 'No pending changes';
+        statusText.className = 'text-xs text-slate-500 italic';
+      }
+    }
+
+    function testReload() {
+      logEvent('RELOAD_TEST', 'Executing location.reload()...');
+      window.location.reload();
+    }
+
+    function logExternalLink(e) {
+      logEvent('NAV_TEST', 'Clicked external link to example.com...');
+    }
+
+    // 2. Classic Window Dialog Callbacks
+    function triggerWindowAlert() {
+      try {
+        logEvent('window.alert()', 'Invoking native window.alert()...');
+        window.alert('This is a native browser window.alert() message!');
+        logEvent('window.alert()', 'Alert popup acknowledged by user.');
+      } catch (err) {
+        logEvent('window.alert() ERROR', 'Blocked by iframe sandbox policy: ' + err.message);
+      }
+    }
+
+    function triggerWindowConfirm() {
+      try {
+        logEvent('window.confirm()', 'Invoking native window.confirm()...');
+        const userChoice = window.confirm('Native Confirm Dialog:\n\nDo you want to confirm this action?');
+        logEvent('window.confirm() RESPONSE', `User clicked: ${userChoice ? 'OK (true)' : 'Cancel (false)'}`);
+      } catch (err) {
+        logEvent('window.confirm() ERROR', 'Blocked by iframe sandbox policy: ' + err.message);
+      }
+    }
+
+    function triggerWindowPrompt() {
+      try {
+        logEvent('window.prompt()', 'Invoking native window.prompt()...');
+        const userInput = window.prompt('Native Prompt Dialog:\n\nPlease enter your user handle:', 'Developer');
+        if (userInput === null) {
+          logEvent('window.prompt() RESPONSE', 'User cancelled the prompt (returned null)');
+        } else {
+          logEvent('window.prompt() RESPONSE', `User entered: "${userInput}"`);
+        }
+      } catch (err) {
+        logEvent('window.prompt() ERROR', 'Blocked by iframe sandbox policy: ' + err.message);
+      }
+    }
+
+    // 3. Native HTML5 <dialog> Component logic
+    const html5Modal = document.getElementById('nativeModalElement');
+
+    function openHTML5Dialog() {
+      logEvent('<dialog>', 'Invoking nativeModalElement.showModal()...');
+      html5Modal.showModal();
+    }
+
+    // Listen for standard HTML5 <dialog> close event
+    html5Modal.addEventListener('close', () => {
+      const payload = document.getElementById('dialogInput').value;
+      const returnValue = html5Modal.returnValue;
+      logEvent('<dialog> CLOSED', `Dialog closed. ReturnValue: "${returnValue}", Payload Input: "${payload}"`);
     });
   </script>
 </body>
