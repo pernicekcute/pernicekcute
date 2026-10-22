@@ -1,0 +1,286 @@
+{
+ "key": "87184e2",
+ "stars": 1,
+ "contributions": 621,
+ "repos": 17,
+ "followers": 0,
+ "languages": [
+  [
+   "Lua",
+   226507
+  ],
+  [
+   "Swift",
+   37241
+  ],
+  [
+   "CMake",
+   895
+  ]
+ ],
+ "days": [
+  [
+   {
+    "c": 15,
+    "day": 4,
+    "today": false
+   },
+   {
+    "c": 4,
+    "day": 5,
+    "today": false
+   },
+   {
+    "c": 0,
+    "day": 6,
+    "today": false
+   },
+   {
+    "c": 0,
+    "day": 7,
+    "today": false
+   },
+   {
+    "c": 0,
+    "day": 8,
+    "today": false
+   },
+   {
+    "c": 0,
+    "day": 9,
+    "today": false
+   },
+   {
+    "c": 33,
+    "day": 10,
+    "today": false
+   }
+  ],
+  [
+   {
+    "c": 12,
+    "day": 11,
+    "today": false
+   },
+   {
+    "c": 0,
+    "day": 12,
+    "today": false
+   },
+   {
+    "c": 0,
+    "day": 13,
+    "today": false
+   },
+   {
+    "c": 0,
+    "day": 14,
+    "today": false
+   },
+   {
+    "c": 0,
+    "day": 15,
+    "today": false
+   },
+   {
+    "c": 0,
+    "day": 16,
+    "today": false
+   },
+   {
+    "c": 0,
+    "day": 17,
+    "today": false
+   }
+  ],
+  [
+   {
+    "c": 0,
+    "day": 18,
+    "today": false
+   },
+   {
+    "c": 0,
+    "day": 19,
+    "today": false
+   },
+   {
+    "c": 0,
+    "day": 20,
+    "today": false
+   },
+   {
+    "c": 0,
+    "day": 21,
+    "today": false
+   },
+   {
+    "c": 3,
+    "day": 22,
+    "today": true
+   },
+   null,
+   null
+  ]
+ ],
+ "streak": {
+  "current": 1,
+  "longest": 6
+ },
+ "pins": [],
+ "all": [
+  {
+   "name": "SwiftyApp",
+   "url": "https://github.com/pernicekcute/SwiftyApp",
+   "text": "",
+   "fork": false,
+   "stars": 1,
+   "language": "Swift",
+   "topics": []
+  },
+  {
+   "name": "pernicekcute",
+   "url": "https://github.com/pernicekcute/pernicekcute",
+   "text": "My GitHub profile",
+   "fork": false,
+   "stars": 0,
+   "language": null,
+   "topics": []
+  },
+  {
+   "name": "UniversalSynSaveInstance",
+   "url": "https://github.com/pernicekcute/UniversalSynSaveInstance",
+   "text": "Shortly USSI. A universal saveinstance revival. Independent project; not affiliated with or endorsed by Roblox or the Luau team. This can be used as a Roblox-Format-File writer.",
+   "fork": true,
+   "stars": 0,
+   "language": "Luau",
+   "topics": []
+  },
+  {
+   "name": "RobloxGameFiles",
+   "url": "https://github.com/pernicekcute/RobloxGameFiles",
+   "text": "",
+   "fork": false,
+   "stars": 0,
+   "language": "Lua",
+   "topics": []
+  },
+  {
+   "name": "Cowstalt",
+   "url": "https://github.com/pernicekcute/Cowstalt",
+   "text": "",
+   "fork": false,
+   "stars": 0,
+   "language": "Swift",
+   "topics": []
+  },
+  {
+   "name": "Cowland",
+   "url": "https://github.com/pernicekcute/Cowland",
+   "text": "",
+   "fork": true,
+   "stars": 0,
+   "language": "Swift",
+   "topics": []
+  },
+  {
+   "name": "rooootdev",
+   "url": "https://github.com/pernicekcute/rooootdev",
+   "text": "my bio",
+   "fork": true,
+   "stars": 0,
+   "language": null,
+   "topics": []
+  },
+  {
+   "name": "sfsymbols-svg",
+   "url": "https://github.com/pernicekcute/sfsymbols-svg",
+   "text": "Apple's SF Symbols in .svg format compiled into one place.",
+   "fork": true,
+   "stars": 0,
+   "language": "Swift",
+   "topics": []
+  },
+  {
+   "name": "GestaltEdit",
+   "url": "https://github.com/pernicekcute/GestaltEdit",
+   "text": "iOS 27 MobileGestalt editor",
+   "fork": true,
+   "stars": 0,
+   "language": "Swift",
+   "topics": []
+  },
+  {
+   "name": "fenrir2608",
+   "url": "https://github.com/pernicekcute/fenrir2608",
+   "text": "Fenrir's GitHub profile",
+   "fork": true,
+   "stars": 0,
+   "language": "JavaScript",
+   "topics": []
+  },
+  {
+   "name": "HowToGetAchivements",
+   "url": "https://github.com/pernicekcute/HowToGetAchivements",
+   "text": "",
+   "fork": false,
+   "stars": 0,
+   "language": null,
+   "topics": []
+  },
+  {
+   "name": "PreviewView",
+   "url": "https://github.com/pernicekcute/PreviewView",
+   "text": "Make use of SwiftUI Previews for UIKit!",
+   "fork": true,
+   "stars": 0,
+   "language": "Swift",
+   "topics": []
+  },
+  {
+   "name": "ios-launcher",
+   "url": "https://github.com/pernicekcute/ios-launcher",
+   "text": "Manages installing and launching Geometry Dash for iOS",
+   "fork": true,
+   "stars": 0,
+   "language": "Objective-C",
+   "topics": []
+  },
+  {
+   "name": "Ksign",
+   "url": "https://github.com/pernicekcute/Ksign",
+   "text": "The \"cleaner\" Esign app.",
+   "fork": true,
+   "stars": 0,
+   "language": "Swift",
+   "topics": []
+  },
+  {
+   "name": "msperni",
+   "url": "https://github.com/pernicekcute/msperni",
+   "text": "",
+   "fork": false,
+   "stars": 0,
+   "language": "Lua",
+   "topics": []
+  },
+  {
+   "name": "example-mod",
+   "url": "https://github.com/pernicekcute/example-mod",
+   "text": "Basic template mod for Geode",
+   "fork": true,
+   "stars": 0,
+   "language": "C++",
+   "topics": []
+  },
+  {
+   "name": "Duck",
+   "url": "https://github.com/pernicekcute/Duck",
+   "text": "",
+   "fork": false,
+   "stars": 0,
+   "language": "CMake",
+   "topics": []
+  }
+ ]
+}
