@@ -10,22 +10,27 @@
     "hero",
     "socials",
     "about",
+    "wave",
     "stack",
     "projects",
     "stats",
     "streak",
-    "wave",
     "buttons"
   ],
   "hidden": [
+    "stack",
+    "projects",
+    "stats",
+    "streak",
+    "buttons",
     "socials"
   ],
   "hero": {
     "greeting": "Hi, I'm",
     "name": "rkyroaddd3",
-    "subtitle": "I build interfaces and small useful tools.",
+    "subtitle": "I build iOS apps and also Windows software",
     "typing": true,
-    "avatarShape": "cookie12",
+    "avatarShape": "cookie",
     "chips": [
       {
         "icon": "location_on",
@@ -33,7 +38,7 @@
       },
       {
         "icon": "code",
-        "label": "C++ · C# · Python"
+        "label": "C++ · C# · Python · Swift/SwiftUI"
       }
     ]
   },
@@ -45,12 +50,12 @@
         "label": "Developer and designer"
       },
       {
-        "icon": "code",
-        "label": "Mostly frontend"
+        "icon": "palette",
+        "label": "Into iOS Design"
       },
       {
-        "icon": "palette",
-        "label": "Into Material Design"
+        "icon": "person",
+        "label": "Solo Developer"
       }
     ]
   },
@@ -61,12 +66,8 @@
         "title": "Main",
         "items": [
           {
-            "icon": "brand:typescript",
-            "label": "TypeScript"
-          },
-          {
-            "icon": "brand:react",
-            "label": "React"
+            "icon": "brand:cplusplus",
+            "label": "C++"
           },
           {
             "icon": "brand:python",
